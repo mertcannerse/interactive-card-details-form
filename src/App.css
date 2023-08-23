@@ -1,38 +1,336 @@
-.App {
-  text-align: center;
+body {
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    rgb(66, 7, 79) 10%,
+    rgb(6, 79, 79) 35%,
+    #fff 0%
+  );
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card-container {
+  perspective: 1000px;
+  width: 35rem;
+  height: 22rem;
+  margin: 15% auto;
+  font-family: "Courier New", Courier, monospace;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  border-radius: 1rem;
+}
+
+.card-front {
+  background: linear-gradient(
+    225deg,
+    rgba(171, 1, 210, 1),
+    rgba(16, 139, 139, 1)
+  );
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  background: #d2d3d8;
+  transform: rotateY(180deg);
+}
+
+.logo {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+.logo1 {
+  background: #fff;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.logo2 {
+  background: transparent;
+  border: 3px solid #fff;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  margin-left: -14rem;
+}
+
+.card-number {
+  font-size: 1.7rem;
+  color: #fff;
+  margin-top: 8rem;
+  margin-left: 2rem;
+  letter-spacing: 0.2rem;
+  font-weight: 500;
+}
+
+.card-name-exp {
+  display: flex;
+  margin-top: 1.5rem;
+}
+
+.card-name {
+  color: #fff;
+  margin-left: 2rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  width: 27rem;
+}
+
+.card-exp {
+  color: #fff;
+  margin-right: -10rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.black-stripe {
+  content: "";
+  height: 4rem;
+  width: 100%;
+  background: #000;
+  margin-top: 2rem;
+  margin-right: -35rem;
+}
+
+.card-cvc {
+  color: #fff;
+  background: #adb5bf;
+  height: 2.5rem;
+  width: 30rem;
+  margin: 1.5rem auto;
+  padding-top: 1.25rem;
+  text-align: end;
+  padding-right: 1rem;
+  border-radius: 0.5rem;
+}
+
+.card-text {
+  width: 15rem;
+  height: auto;
+  margin: 1.5rem auto;
+  gap: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.card-line {
+  display: flex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card-line-long,
+.card-line-medium,
+.card-line-short {
+  margin: 0 0.2rem;
+}
+
+.card-line-long {
+  width: 5rem;
+  height: 0.3rem;
+  background-color: #adb5bf;
+  opacity: 0.4;
+  border-radius: 4px;
+  margin-bottom: 0.25rem;
+}
+
+.card-line-medium {
+  width: 3rem;
+  height: 0.3rem;
+  background-color: #adb5bf;
+  opacity: 0.4;
+  border-radius: 4px;
+  margin-bottom: 0.25rem;
+}
+
+.card-line-short {
+  width: 1rem;
+  height: 0.3rem;
+  background-color: #adb5bf;
+  opacity: 0.4;
+  border-radius: 4px;
+  margin-bottom: 0.25rem;
+}
+
+Form {
+  display: flex;
+  flex-direction: column;
+  width: 26rem;
+  height: 26rem;
+  margin: 32% -10%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+Form input {
+  height: 2.5rem;
+  color: #000;
+  background: #fff;
+  border: 1px solid #88b5b5;
+  border-radius: 0.4rem;
+  margin-top: 0.3rem;
+  text-indent: 10px;
+}
+
+Form input:focus {
+  outline: none;
+  border: 2px solid #a605d0;
+}
+
+.error {
+  border: 2px solid #ff0000;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 12px;
+  margin-top: 0.2rem;
+}
+
+.formName,
+.formNumber,
+.formCvc,
+.formExpDate {
+  margin-bottom: 0.6rem;
+  height: 5.5rem;
+}
+
+.formName,
+.formNumber,
+.formCvc {
+  display: flex;
+  flex-direction: column;
+}
+
+.formExpDateCvc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.formExpDate,
+.formCvc {
+  width: 13rem;
+}
+
+.formExpDateContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.formExpDateM,
+.formExpDateY {
+  width: 5rem;
+}
+
+.formExpDateM > input,
+.formExpDateY > input {
+  width: 4rem;
+  margin-right: 1rem;
+}
+
+.submit {
+  color: #fff;
+  background: #220930;
+  border: 0;
+  border-radius: 0.3rem;
+  height: 2.5rem;
+  cursor: pointer;
+}
+
+.submit:hover {
+  cursor: pointer;
+  color: #220930;
+  background: #fff;
+  border: 1px solid #220930;
+}
+
+.ty-container {
+  display: flex;
+  flex-direction: column;
+  width: 26rem;
+  height: 26rem;
+  margin: 30% -10%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ty-logo {
+  width: 11rem;
+  height: 8rem;
+  background: linear-gradient(
+    225deg,
+    rgba(171, 1, 210, 1),
+    rgba(16, 139, 139, 1)
+  );
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 3rem;
+  margin: 0 auto;
+}
+
+.checkmark {
+  -ms-transform: scaleX(-1) rotate(-35deg);
+  -webkit-transform: scaleX(-1) rotate(-35deg);
+  transform: scaleX(-1) rotate(-35deg);
+  font-size: 4rem;
+  color: #fff;
+}
+
+.ty-header {
+  text-align: center;
+  font-weight: 600;
+}
+
+.ty-text {
+  text-align: center;
+  margin-top: -1rem;
+  opacity: 0.6;
+  letter-spacing: 2px;
+}
+
+.ty-button {
+  margin-top: 3rem;
+  color: #fff;
+  background: #220930;
+  border: 0;
+  border-radius: 0.3rem;
+  height: 2.5rem;
+  cursor: pointer;
+}
+
+.ty-button:hover {
+  cursor: pointer;
+  color: #220930;
+  background: #fff;
+  border: 1px solid #220930;
 }
